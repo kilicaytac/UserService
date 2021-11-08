@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+    db:
+        image: "mcr.microsoft.com/mssql/server:2019-latest"
+        ports:
+            - "1433:1433"
+        environment:
+            SA_PASSWORD: "yourStrong(!)Password"
+            ACCEPT_EULA: "Y"
+        volumes:
+            - myapp:/home/app/data
+        networks:
+            - my-net
+networks:
+    my-net:
+        driver: bridge
+
+volumes:
+    myapp:
