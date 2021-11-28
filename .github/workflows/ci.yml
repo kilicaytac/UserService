@@ -25,6 +25,11 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: SonarQube Scan
       uses: sonarsource/sonarqube-scan-action@master
+      with:
+        args: >
+         -Dsonar.projectKey=UserService
+         -Dsonar.organization=kilicaytac
+         -Dsonar.verbose=true
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
