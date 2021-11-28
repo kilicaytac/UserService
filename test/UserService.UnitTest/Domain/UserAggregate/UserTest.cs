@@ -12,14 +12,23 @@ namespace UserService.UnitTest.Domain.UserAggregate
 
         }
 
+        [Fact]
         public void Constructor_SetFields_WhenParametersAreValid()
         {
             //Arrange
-
+            string firstName = "Aytaç";
+            string lastName = "Kılıç";
+            string email = "kilicaytac@hotmail.com";
+            string password = "mystrongpass";
 
             //Act
+            var user = new User(firstName, lastName, email, password);
 
             //Assert
+            Assert.Equal(firstName, user.FirstName);
+            Assert.Equal(lastName, user.LastName);
+            Assert.Equal(email, user.Email);
+            Assert.Equal(password, user.Password);
         }
 
         [Fact]
