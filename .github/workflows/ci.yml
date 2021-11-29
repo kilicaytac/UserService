@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Show Sonar token
+      run: |
+       echo ${{ secrets.SONAR_TOKEN }}
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
@@ -28,11 +31,10 @@ jobs:
       with:
         args: >
          -Dsonar.projectKey=UserService
-         -Dsonar.organization=kilicaytac
+         -Dsonar.organization=Aytaç
          -Dsonar.verbose=true
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+         -Dsonar.login= ${{ secrets.SONAR_TOKEN }}
+         -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
     - name: SonarQube Quality Gate check
       uses: sonarsource/sonarqube-quality-gate-action@master
       # Force to fail step after specific time
